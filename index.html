@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat – Fullscreen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="chat-window" aria-label="AI Chat">
+        <header class="topbar">
+            <div class="brand">
+                <img class="favicon" src="favicon.ico" alt="" aria-hidden="true">
+                <h1>AI Chat</h1>
+            </div>
+            <div class="spacer"></div>
+        </header>
+
+        <main class="chat" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="message model">
+                <p>Hi, how can I help you?</p>
+            </div>
+        </main>
+
+        <div class="toast" role="status" aria-live="polite" hidden></div>
+
+        <form class="input-area" autocomplete="off">
+            <input type="text" placeholder="Ask me anything..." aria-label="Message input">
+            <button type="submit" aria-label="Send message">
+                <img src="send-icon.png" alt="">
+            </button>
+        </form>
+    </section>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+:root{
+    --bg: #0b0f1a;
+    --surface: #0f1524;
+    --muted-surface: #0d1422;
+    --border: #1f2942;
+    --text: #e6ecff;
+    --text-muted: #9fb0d3;
+    --primary: #5b8cff;
+    --primary-strong: #3f6cf0;
+    --user-bubble: linear-gradient(135deg, #5b8cff, #8b5bff);
+    --content-max-width: 880px;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+    background: radial-gradient(1200px 600px at 80% -20%, #1a2240 0%, transparent 60%),
+                radial-gradient(900px 500px at -10% 30%, #1a2240 0%, transparent 60%),
+                var(--bg);
+    color: var(--text);
+}
+
+.chat-window{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(4px);
+}
+
+.topbar{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(15,21,36,0.9), rgba(15,21,36,0.6));
+    border-bottom: 1px solid var(--border);
+}
+
+.brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand .favicon{
+    width: 20px;
+    height: 20px;
+}
+
+.topbar h1{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.chat{
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 16px 120px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--content-max-width);
+}
+
+.message{
+    display: flex;
+    margin: 10px 0;
+}
+
+.message p{
+    max-width: 100%;
+    width: 100%;
+    padding: 18px 18px;
+    border-radius: 16px;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.message.model p{
+    background: var(--muted-surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.message.user{
+    justify-content: flex-end;
+}
+
+.message.user p{
+    background: var(--user-bubble);
+    color: white;
+}
+
+.input-area{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px max(16px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+    background: linear-gradient(0deg, rgba(11,15,26,1) 40%, rgba(11,15,26,0.4) 100%);
+    border-top: 1px solid var(--border);
+}
+
+.input-area input{
+    height: 48px;
+    flex: 1;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 0 16px;
+    outline: none;
+}
+
+.input-area input::placeholder{
+    color: var(--text-muted);
+}
+
+.input-area button{
+    height: 48px;
+    width: 48px;
+    border-radius: 12px;
+    border: 1px solid var(--primary-strong);
+    background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.input-area button img{
+    width: 18px;
+    filter: brightness(0) invert(1);
+}
+
+.loading{
+    opacity: 0.7;
+}
+
+/* Toast */
+.toast{
+    position: fixed;
+    left: 50%;
+    bottom: calc(90px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    background: #d54848;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 90vw;
+    z-index: 10;
+}
+
+.message.error p{
+    background: rgba(213,72,72,0.15);
+    border: 1px solid rgba(213,72,72,0.6);
+    color: #ffd9d9;
+}
+
+.retry-btn{
+    margin-top: 8px;
+    background: transparent;
+    color: #ffb2b2;
+    border: 1px solid rgba(213,72,72,0.6);
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Small screens */
+@media (max-width: 600px){
+    :root{ --content-max-width: 100%; }
+    .topbar{ padding: 12px 12px; }
+    .chat{ padding: 16px 12px 110px; }
+    .input-area{ gap: 8px; }
+    .input-area input{ height: 46px; font-size: 16px; }
+    .input-area button{ height: 46px; width: 46px; }
+    .message p{ font-size: 15px; padding: 14px; }
+}
+
+/* Very small heights (landscape phones) */
+@media (max-height: 520px){
+    .chat{ padding: 12px 10px 92px; }
+    .topbar{ padding: 8px 10px; }
+    .input-area{ padding-top: 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+    .input-area input{ height: 40px; }
+    .input-area button{ height: 40px; width: 40px; }
+}
+
+/* Large screens */
+@media (min-width: 1200px){
+    :root{ --content-max-width: 980px; }
+}
